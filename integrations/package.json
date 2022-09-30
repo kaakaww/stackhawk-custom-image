@@ -1,0 +1,15 @@
+{
+  "name": "integrations",
+  "version": "0.0.1",
+  "description": "Examples of StackHawk Integrations with Developer Tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "cypress": "^10.9.0",
+    "@playwright/test": "^1.26.1"
+  },
+  "author": "StackHawk",
+  "license": "ISC"
+}

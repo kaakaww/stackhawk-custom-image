@@ -7,7 +7,7 @@ docker-compose-temp/
 src/app/hawkdocs/
 
 # dependencies
-/node_modules
+*/node_modules
 /.pnp
 .pnp.js
 
