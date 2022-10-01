@@ -61,4 +61,4 @@ __RUN__
 
 __RUN__ instruction is used to execute command during the build process of the docker image. You can install additional packages needed for your Docker images, which we did above in our Dockerfile to install _NodeJS_, _Newman_ using our base StackHawk image
 
-For more information use the link provided above.
+For more instructions use the link provided above.
