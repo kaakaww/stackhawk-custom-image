@@ -52,4 +52,13 @@ __USER__
 
 The __USER__ instruction is used to define the default user when running the image. The RUN, CMD, and ENTRYPOINT follow the __USER__ instruction in the Dockerfile.
 
-For more information use the link provided above
+__COPY__
+
+__COPY__ is a Dockerfile instruction that let you copy files from a specific location into a Docker image.
+__COPY__ takes in a src and destination. It only lets you copy in a local file or directory from your host (the machine building the Docker image) into the Docker image itself.
+
+__RUN__
+
+__RUN__ instruction is used to execute command during the build process of the docker image. You can install additional packages needed for your Docker images, which we did above in our Dockerfile to install _NodeJS_, _Newman_ using our base StackHawk image
+
+For more information use the link provided above.
