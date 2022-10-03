@@ -8,9 +8,8 @@ USER root
 
 COPY . /app
 
-RUN apt-get update && apt-get install -y curl
-RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash
-RUN apt-get install -y nodejs
-RUN npm install --global newman
-
-USER zap
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash && \
+    apt-get install -y nodejs && \
+    npm install --global newman
