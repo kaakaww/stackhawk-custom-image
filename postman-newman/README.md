@@ -95,5 +95,29 @@ Where:
 
 - -t to allocate a psuedo-TTY to HawkScan so it can print status messages to the console in real time.
 
+For more information on how to run a StackHawk image as a container please follow this [link](https://docs.stackhawk.com/hawkscan/).
+
+# Postman Config
+
+To use Postman Scan Discovery in HawkScan, add the following settings to your stackhawk.yml file:
+
+```
+hawk:
+  spider:
+    base: false # disable the default base spider; optional
+    postmanConfig:
+      filePath: # file path of the Postman collection from the base directory
+      apikey: # api key to authenticate the user with Postman
+      collectionUID: # Id of the collection to be pulled from Postman
+```
+
+You must either provide a postmanConfig.filePath with a path to a Postman Collection, or specify the postmanConfig.apikey and postmanConfig.collectionUID with values for your collection from Postman API Network.
+
+These settings can be configured under the hawk.spider.postmanConfig section of the stackhawk.yml file.
+
+For more information on Postman Config use this [link](https://docs.stackhawk.com/hawkscan/scan-discovery/postman.html).
+
+PS: Docker needs to have access to the filePath for it to work. Use this [link](https://docs.docker.com/storage/) for more info.
+
 
 
