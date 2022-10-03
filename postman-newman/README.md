@@ -28,12 +28,11 @@ USER root
 
 COPY . /app
 
-RUN apt-get update && apt-get install -y curl
-RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash
-RUN apt-get install -y nodejs
-RUN npm install --global newman
-
-USER zap
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash && \
+    apt-get install -y nodejs && \
+    npm install --global newman
 ```
 
 __FROM__
@@ -62,3 +61,39 @@ __RUN__
 __RUN__ instruction is used to execute command during the build process of the docker image. You can install additional packages needed for your Docker images, which we did above in our Dockerfile to install _NodeJS_, _Newman_ using our base StackHawk image
 
 For more instructions use the link provided above.
+
+# Building a Docker Image
+
+Build an image from a Dockerfile
+
+```docker build [OPTIONS] PATH | URL | -```
+
+The docker build command builds an image from a Dockerfile and a context. The build’s context is the set of files at a specified location PATH or URL. The PATH is a directory on your local filesystem. The URL is a Git repository location.
+The build context is processed recursively. So, a PATH includes any subdirectories and the URL includes the repository and its submodules. This example shows a build command that uses the current directory (.) as build context.
+
+Here is an example on how to build the above Dockerfile into an image with a "-t" tag flag "custom-stack-hawk:v1" using the current directory annotated by the "."
+
+```docker build -t custom-stack-hawk:v1 .```
+
+For more information on building a docker image please use this [link](https://docs.docker.com/engine/reference/builder/).
+
+# Running the Docker image as a container
+
+To run an image inside of a container, we use the docker run command. The docker run command requires one parameter and that is the image name. Let’s start our image and make sure it is running correctly. Execute the following command in your terminal.
+
+Here is an example on how to run the image with built above
+
+```docker run --rm -v $(pwd):/hawk:rw -e API_KEY=${HAWK_API_KEY} -t custom-stack-hawk:v1```
+
+Where:
+
+- -v $(pwd):/hawk to mount your working directory so HawkScan can find its configuration file.
+
+- --rm to remove the container once the scan is complete.
+
+- -e API_KEY to provide your StackHawk API key to HawkScan as the environment variable API_KEY, so it can send results back to the platform.
+
+- -t to allocate a psuedo-TTY to HawkScan so it can print status messages to the console in real time.
+
+
+
