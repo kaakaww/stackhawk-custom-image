@@ -18,15 +18,19 @@ Before creating your first Dockerfile, you should familiar with the Dockerfile i
 Let's analyze the code snippet below that's provide in the Dockerfile in this directory:
 
 ```
+# Specify the parent image from which we build
 FROM stackhawk/hawkscan
 
 ARG NODE_VERSION="16.x"
 
+# Set the working directory
 WORKDIR /app
 
 USER root
 
+# Copy files from your host to your current working directory
 COPY . /app
+
 
 RUN apt-get update && \
     apt-get install -y curl && \
