@@ -13,3 +13,5 @@ RUN apt-get update && \
     curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash && \
     apt-get install -y nodejs && \
     npm install --global newman
+    
+USER zap
