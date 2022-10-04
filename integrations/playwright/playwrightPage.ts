@@ -21,8 +21,8 @@ export class PlaywrightPage {
         this.account = details
     }
 
-    public async attemptLogin(expectedAppPage: String): Promise<void> {
-        await this.page.goto(appHost(), { waitUntil: 'networkidle' });
+    public async formAuth(expectedAppPage: String): Promise<void> {
+        await this.page.goto(`${appHost()}/login`, { waitUntil: 'networkidle' });
         // Click text=Email
         await this.page.click('text=Email');
         // Fill [placeholder="Email"]
@@ -30,10 +30,6 @@ export class PlaywrightPage {
         // Press Tab
         await this.page.click('[placeholder="Password"]');
         // Fill [placeholder="Password"]
-        await this.page.fill('[placeholder="Password"]', loginPW());
-        // Click button:has-text("Login")
-        await this.page.keyboard.press('Enter');
-        // wait to arrive at expected login
-        await this.page.waitForNavigation({ url: `${appHost()}${expectedAppPage}` });
+        await this.page.fill('[placeholder="Password"]', this.account.password);
     }
 }

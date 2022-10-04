@@ -1,5 +1,6 @@
 describe('empty spec', () => {
   it('passes', () => {
-    cy.visit('https://example.cypress.io')
+    cy.visit('/hidden/cypress');
+    cy.title().should('include', 'cypress tests')
   })
 })

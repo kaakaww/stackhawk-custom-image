@@ -73,10 +73,12 @@ Cypress.Commands.add('basicAuth', () => {
 })
 // -- This is a parent command --
 Cypress.Commands.add('formMultiAuth', () => {
-    cy.visit(`${APP_HOST}/login`)
+    cy.visit(`${APP_HOST}/login-form-multi`);
     cy.get('#username').type(loginUsername);
     cy.get('#password').type(loginPassword);
+    cy.get('#remember').click();
     cy.get('button:contains("Submit")').click();
+    cy.get('button:contains("Sign Out")').should('be.visible');
 })
 //
 //

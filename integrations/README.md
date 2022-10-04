@@ -1,10 +1,14 @@
 # Testing Integrations
 
-These are demonstrations of common software testing tools used to automate browser testing and perform authentication.
+These are demonstrations of industry recognized E2E testing tools used to automate browser testing. These E2E tests are all meant to be run against [https://github.com/kaakaww/javaspringvulny](https://github.com/kaakaww/javaspringvulny), an intentionally vulnerable web application.
 
-All commands should be run from this directory;
+All commands should be run from this directory.
 
 ## Cypress
+
+Cypress is a frontend testing tool that automates testing web applications through a regular or headless browser.
+
+More instructions for scanning
 
 ### Headed Testing
 
@@ -14,6 +18,10 @@ All commands should be run from this directory;
 
 `npm run ci-cypress`
 
+### Scanning with HawkScan
+
+Custom Scan Discovery Instructions
+
 ### Best Practices
 
 * Cypress provides native support for typescript, which makes e2e testing and developing custom cypress commands easier
@@ -21,4 +29,8 @@ All commands should be run from this directory;
 
 ## Playwright
 
+coming soon
+
 ## Selenium
+
+coming soon
