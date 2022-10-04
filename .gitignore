@@ -73,3 +73,6 @@ integrations/cypress/e2e/2-*
 
 integrations/cypress/videos
 integrations/cypress/screenshots
+
+integrations/playwright/out
+integrations/playwright/auth
