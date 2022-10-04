@@ -31,12 +31,15 @@ USER root
 # Copy files from your host to your current working directory
 COPY . /app
 
-
+# Install Curl, Node, Newman, and do a clean up afterwards  
 RUN apt-get update && \
     apt-get install -y curl && \
     curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash && \
     apt-get install -y nodejs && \
-    npm install --global newman
+    npm install --global newman && \
+    apt-get purge --auto-remove && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 ```
 
 __FROM__
