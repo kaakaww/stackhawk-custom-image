@@ -10,23 +10,27 @@
 //
 //
 // -- This is a parent command --
-Cypress.Commands.add('form-auth', (email, password) => {
-    cy.visit(`${APP_HOST}/login`) 
+const APP_HOST = Cypress.config().baseUrl
+Cypress.Commands.add('formAuth', (email, password) => {
+    cy.visit(`${APP_HOST}/login`)
+    cy.get('#username').type(email);
+    cy.get('#password').type(password);
+    cy.get('.btn').click();
 })
 // -- This is a parent command --
-Cypress.Commands.add('jwt-auth', (email, password) => {
+Cypress.Commands.add('jwtAuth', (email, password) => {
     cy.visit(`${APP_HOST}/jwt-auth`) 
 })
 // -- This is a parent command --
-Cypress.Commands.add('token-auth', (email, password) => {
+Cypress.Commands.add('tokenAuth', (email, password) => {
     cy.visit(`${APP_HOST}/token-auth`) 
 })
 // -- This is a parent command --
-Cypress.Commands.add('basic-auth', (email, password) => {
+Cypress.Commands.add('basicAuth', (email, password) => {
     cy.visit(`${APP_HOST}/basic-auth`) 
 })
 // -- This is a parent command --
-Cypress.Commands.add('Form-multi-auth', (email, password) => {
+Cypress.Commands.add('formMultiAuth', (email, password) => {
     cy.visit(`${APP_HOST}/login-form-multi`) 
 })
 //

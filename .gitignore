@@ -66,3 +66,7 @@ build/
 .project
 org.eclipse*
 .settings/**
+
+# cypress demo files
+integrations/cypress/e2e/1-*
+integrations/cypress/e2e/2-*
