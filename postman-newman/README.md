@@ -35,28 +35,28 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 ```
 
-__FROM__
+[__FROM__](https://docs.docker.com/engine/reference/builder/#from)
 
 __FROM__ comand Set the base-image for the new image that you want to create. The __FROM__ instruction will initialize the new build-stage and must be located at the top of the Dockerfile.
 
-__ARG__
+[__ARG__](https://docs.docker.com/engine/reference/builder/#arg)
 
 The __ARG__ instruction is used to define a variable that can  be passed at the built-time. You can use this instruction in the docker 'build command' during the build time using the ```--build-arg variable=value``` option and can be passed through the Dockerfile. Also, multiple __ARG__ can be used in the Dockerfile.
 
-__WORKDIR__
+[__WORKDIR__](https://docs.docker.com/engine/reference/builder/#workdir)
 
 The __WORKDIR__ instruction is used to define the default working directory of your Docker image. You can add multiple __WORKDIR__ instruction in your Dockerfile, and if it doesn't exist, it will be created automatically.
 
-__USER__
+[__USER__](https://docs.docker.com/engine/reference/builder/#user)
 
 The __USER__ instruction is used to define the default user when running the image. The RUN, CMD, and ENTRYPOINT follow the __USER__ instruction in the Dockerfile.
 
-__COPY__
+[__COPY__](https://docs.docker.com/engine/reference/builder/#copy)
 
 __COPY__ is a Dockerfile instruction that let you copy files from a specific location into a Docker image.
 __COPY__ takes in a src and destination. It only lets you copy in a local file or directory from your host (the machine building the Docker image) into the Docker image itself.
 
-__RUN__
+[__RUN__](https://docs.docker.com/engine/reference/builder/#run)
 
 __RUN__ instruction is used to execute command during the build process of the docker image. You can install additional packages needed for your Docker images, which we did above in our Dockerfile to install _NodeJS_, _Newman_ using our base StackHawk image
 
