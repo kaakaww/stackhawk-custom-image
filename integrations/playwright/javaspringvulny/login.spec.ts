@@ -6,7 +6,7 @@ test.describe('login', () => {
     test('can login with formAuth', async ({ page }, workerInfo) => {
         const pwPage = new PlaywrightPage(page, workerInfo);
         await pwPage.formAuth();
-        expect(pwPage.page.locator('button:contains("Sign Out")').isVisible());
+        expect(pwPage.page.locator('button.btn-primary').isVisible());
     });
 
     test('can login with jwtAuth', async ({ page }, workerInfo) => {
@@ -42,4 +42,4 @@ test.describe('login', () => {
         const pwPage = new PlaywrightPage(page, workerInfo);
         pwPage.signOut();
     });
-};
+});
