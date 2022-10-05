@@ -14,3 +14,7 @@ StackHawk provides dynamic application vulnerability scanning from development t
 
 # stackhawk-custom-image
 Repo to help users customize their on StackHawk docker images
+
+## Introduction
+
+In order to run your application in a docker container, a customized docker image is created. This customized docker image includes instructions that install specific packages and copy the code into the docker container. This repo provides steps to create a custom docker image from stackhawk base image and how to run it as a container.
