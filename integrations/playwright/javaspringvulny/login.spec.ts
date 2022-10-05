@@ -12,34 +12,34 @@ test.describe('login', () => {
     test('can login with jwtAuth', async ({ page }, workerInfo) => {
         const pwPage = new PlaywrightPage(page, workerInfo);
         await pwPage.jwtAuth();
-        pwPage.attemptSearch('test');
+        await pwPage.attemptSearch('test');
     });
 
     test('can login with tokenAuth', async ({ page }, workerInfo) => {
         const pwPage = new PlaywrightPage(page, workerInfo);
         await pwPage.tokenAuth();
-        pwPage.attemptSearch('test');
+        await pwPage.attemptSearch('test');
         expect(pwPage.page.locator('#results')).toHaveClass('alert-success');
     });
 
     test('can login with basicAuth', async ({ page }, workerInfo) => {
         const pwPage = new PlaywrightPage(page, workerInfo);
         await pwPage.basicAuth();
-        pwPage.attemptSearch('test');
+        await pwPage.attemptSearch('test');
         expect(pwPage.page.locator('#results')).toHaveClass('alert-success');
     });
 
     test('can login with formMultiAuth', async ({ page }, workerInfo) => {
         const pwPage = new PlaywrightPage(page, workerInfo);
         await pwPage.formMultiAuth();
-        pwPage.page.goto('/search', { waitUntil: 'networkidle' });
+        await pwPage.page.goto('/search', { waitUntil: 'networkidle' });
         expect(pwPage.page.locator('#search').isVisible());
     });
 
     
 
-    test.afterEach(({ page }, workerInfo) => {
+    test.afterEach(async ({ page }, workerInfo) => {
         const pwPage = new PlaywrightPage(page, workerInfo);
-        pwPage.signOut();
+        await pwPage.signOut();
     });
 });

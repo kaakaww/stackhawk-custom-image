@@ -1,4 +1,4 @@
-import { PlaywrightTestConfig, ViewportSize } from "@playwright/test";
+import { PlaywrightTestConfig, ViewportSize, PlaywrightTestProject } from "@playwright/test";
 import { accountStoragePath, allTestAccounts, TestAccount } from "./accounts";
 import path from "path";
 import dotenv from 'dotenv';
@@ -6,23 +6,9 @@ import dotenv from 'dotenv';
 export const parsedConfig = dotenv.config().parsed as Record<string, string>;
 export const appHost = (): string => parsedConfig["APP_TEST_HOST"];
 
-interface TestProject {
-  name: string;
-  use: {
-    browserName?: "chromium" | "firefox" | "webkit";
-    viewport: ViewportSize;
-    userAgent?: string;
-    deviceScaleFactor?: number;
-    isMobile?: boolean;
-    hasTouch?: boolean;
-    defaultBrowserType?: "chromium" | "firefox" | "webkit";
-    storageState?: string;
-  };
-}
+type PlaywrightProject = PlaywrightTestProject & { metadata: TestAccount };
 
-type PlaywrightProject = TestProject & { metadata: TestAccount };
-
-const testProjects: TestProject[] = [
+const testProjects: PlaywrightTestProject[] = [
   {
     name: "Desktop Chromium",
     use: {
@@ -55,7 +41,7 @@ const testProjects: TestProject[] = [
 ];
 
 const playwrightProjects: PlaywrightProject[] = testProjects.flatMap(
-  (testProject: TestProject) =>
+  (testProject: PlaywrightTestProject) =>
     allTestAccounts.map((account) => {
       const name = `${testProject.name}:${account.name}`;
       const storageState = accountStoragePath(account);
