@@ -12,13 +12,13 @@ Follow the [Cypress guide for getting started](https://docs.cypress.io/guides/ge
 
 > Ensure javaspringvulny is running on `https://localhost:9000`
 
-UI: `npx cypress open`
+UI: `npx cypress open --config-file cypress/cypress.config.js`
 
-Headed: `npx cypress run --headed`
+Headed: `npx cypress run --config-file cypress/cypress.config.js --headed`
 
-Headless: `npx cypress run`
+Headless: `npx cypress run --config-file cypress/cypress.config.js`
 
-Specific test: `npx cypress run `
+Specific test: `npx cypress run --config-file cypress/cypress.config.js -s path/to/spec.*.ts`
 
 ### Adding Custom Authentication
 

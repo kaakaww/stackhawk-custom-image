@@ -12,6 +12,8 @@ Follow the [Playwright guide for getting started](https://playwright.dev/docs/in
 
 > Ensure javaspringvulny is running on `https://localhost:9000`
 
+> Playwright requires first running `npx playwright install` to install browsers.
+
 Headed: `npx playwright test -c playwright/out --config=playwright/playwright.config.ts --headed`
 
 Headless: `npx playwright test -c playwright/out --config=playwright/playwright.config.ts`
