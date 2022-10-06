@@ -36,8 +36,6 @@ test.describe('login', () => {
         expect(pwPage.page.locator('#search').isVisible());
     });
 
-    
-
     test.afterEach(async ({ page }, workerInfo) => {
         const pwPage = new PlaywrightPage(page, workerInfo);
         await pwPage.signOut();
