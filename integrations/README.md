@@ -7,6 +7,10 @@ See how these E2E testing tools can be combined with HawkScan with [Custom Scan 
 * [**Cypress**](https://github.com/stackhawk/stackhawk-custom-image/tree/main/integrations/cypress)
 * [**Playwright**](https://github.com/stackhawk/stackhawk-custom-image/tree/main/integrations/playwright)
 
+## Building Custom Docker Images
+
+You can run the following commands from this directory to build custom docker images with hawkscan and these tests
+
 ## Authentication
 
 To perform E2E testing on an application, these testing tools will require scripted authentication into the application. HawkScan provides [common patterns for Authentication](https://docs.stackhawk.com/hawkscan/authenticated-scanning/), and **javaspringvulny** demonstrates multiple forms of authentication.

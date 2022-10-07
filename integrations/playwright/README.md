@@ -20,7 +20,9 @@ Headless: `npx playwright test -c playwright/out --config=playwright/playwright.
 
 Specific test: `npx playwright test specific.spec.ts -c playwright/out --config=playwright/playwright.config.ts`
 
-> Note that the `-c playwright/out --config=playwright/playwright.config.ts` are required due to the structure of this directory.
+#### Parallel Browser Testing
+
+Playwright supports running tests across [multiple browsers in parallel](https://docs.cypress.io/guides/guides/parallelization#Turning-on-parallelization) by default.
  
 ### Adding Custom Authentication
 

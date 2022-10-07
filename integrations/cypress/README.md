@@ -20,6 +20,10 @@ Headless: `npx cypress run --config-file cypress/cypress.config.js`
 
 Specific test: `npx cypress run --config-file cypress/cypress.config.js -s path/to/spec.*.ts`
 
+#### Parallel Browser Testing
+
+Cypress supports [parallel browser testing](https://docs.cypress.io/guides/guides/parallelization#Turning-on-parallelization) as a paid feature used alongside the Cypress Dashboard.
+
 ### Adding Custom Authentication
 
 Cypress allows for the creation of [custom commands](https://github.com/stackhawk/stackhawk-custom-image/blob/main/integrations/cypress/support/commands.ts). When using Cypress with typescript, custom commands require [type signatures](https://github.com/stackhawk/stackhawk-custom-image/blob/main/integrations/cypress/support/index.d.ts) to be updated.
