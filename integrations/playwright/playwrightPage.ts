@@ -27,7 +27,7 @@ export class PlaywrightPage {
         await this.page.goto(`${appHost()}/login`, { waitUntil: 'networkidle' });
         await this.page.locator('#username').fill(this.account.username)
         await this.page.locator('#password').fill(this.account.password)
-        await this.page.locator('button.btn-primary').click();
+        await this.page.locator('.btn >> text=Submit').click();
     }
 
     public async jwtAuth(): Promise<void> {
@@ -58,7 +58,7 @@ export class PlaywrightPage {
         await this.page.locator('#username').fill(this.account.username)
         await this.page.locator('#password').fill(this.account.password)
         await this.page.locator('#remember').click()
-        await this.page.locator('button.btn-primary').click()
+        await this.page.locator('.btn >> text=Submit').click()
     }
 
     public async attemptSearch(value: string): Promise<void> {

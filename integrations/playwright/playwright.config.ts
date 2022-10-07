@@ -1,10 +1,12 @@
 import { PlaywrightTestConfig, ViewportSize, PlaywrightTestProject } from "@playwright/test";
 import { accountStoragePath, allTestAccounts, TestAccount } from "./accounts";
+import process from "process";
 import path from "path";
 import dotenv from 'dotenv';
 
 export const parsedConfig = dotenv.config().parsed as Record<string, string>;
 export const appHost = (): string => parsedConfig["APP_TEST_HOST"];
+export const httpProxy = (): string => process.env.HTTP_PROXY || ''
 
 type PlaywrightProject = PlaywrightTestProject & { metadata: TestAccount };
 
@@ -52,15 +54,20 @@ const playwrightProjects: PlaywrightProject[] = testProjects.flatMap(
     })
 );
 
+/** 
+ * NOTE: proxy configuration is required for custom Scan Discovery. This will selectively enable it only if
+ * the HTTP_PROXY environment variable is present when HawkScan runs.
+ */
+const proxy = httpProxy() ? { server: httpProxy() } : undefined;
+console.log(proxy)
+
 const config: PlaywrightTestConfig<PlaywrightProject> = {
   forbidOnly: true,
   globalSetup: path.join(__dirname, "global-setup.ts"),
   testIgnore: "src/**",
   retries: 0,
-  metadata: {
-    details: "details here go in the test report",
-  },
   use: {
+    proxy, // This is required for Playwright scan discovery! 
     ignoreHTTPSErrors: true,
     video: "on-first-retry",
     baseURL: appHost(),
@@ -69,9 +76,7 @@ const config: PlaywrightTestConfig<PlaywrightProject> = {
   },
   projects: playwrightProjects,
   reporter: [
-    ["list"],
-    // ['json', { outputFile: 'results.json' }]
-    // ['junit', { outputFile: 'results.xml' }]
+    ["list"]
   ],
 };
 export default config;

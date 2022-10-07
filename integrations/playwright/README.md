@@ -28,11 +28,31 @@ Playwright gives the full javascript ecosystem to the developer, and encourages 
 
 ### Scanning with HawkScan
 
-See the docs for using [Playwright tests with Custom Scan Discovery](https://docs.stackhawk.com/hawkscan/scan-discovery/custom.html). You can use the sample [playwright-stackhawk.yml](https://github.com/stackhawk/stackhawk-custom-image/blob/main/integrations/playwright/playwright-stackhawk.yml) file for an example of scanning a web application with it.
+To use Playwright custom scan discovery, you will need to specify the [http proxy server setting](https://playwright.dev/docs/network#http-proxy) in your playwright config.
+
+```ts
+// Proxy setting should use the value from the HTTP_PROXY envvar
+const httpProxy : string | undefined = process.env["HTTP_PROXY"];
+// conditionally enable the proxy if the variable was present
+const proxy = httpProxy ? { server: httpProxy } : undefined;
+const config: PlaywrightTestConfig<PlaywrightProject> = {
+  use: {
+    proxy, // This is required for Playwright scan discovery! 
+    ignoreHTTPSErrors: true,
+    baseURL: process.env["APP_HOST"],
+    javaScriptEnabled: true,
+  },
+  ...
+};
+```
+
+You can use the sample [playwright-stackhawk.yml](https://github.com/stackhawk/stackhawk-custom-image/blob/main/integrations/playwright/playwright-stackhawk.yml) file for an example of scanning a web application with it.
 
 ### Playwright Best Practices
 
 * Playwright encourages creating an extension of the Page class with [test-fixtures](https://playwright.dev/docs/test-fixtures), that will use the resources and details of the tested page to perform custom commands. This is demonstrated with the [PlayWrightPage](https://github.com/stackhawk/stackhawk-custom-image/blob/main/integrations/playwright/playwrightPage.ts)
+
+* Create a [global-setup](https://playwright.dev/docs/test-advanced#global-setup-and-teardown) function to authenticate and manage sessions used by your playwright tests for faster test setup and reuse.
 
 * [Official Docker Images](https://playwright.dev/docs/docker)
 

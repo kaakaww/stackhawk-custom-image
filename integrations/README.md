@@ -13,7 +13,7 @@ To perform E2E testing on an application, these testing tools will require scrip
 
 #### form authentication
 
-Demonstrated on the `/login page` in JavaSpringVulny.
+Demonstrated on the `/login` page in JavaSpringVulny.
 
 A common way to authenticate to a web application is by `POST`ing a username and password which can be verified by your server. Upon verification the server returns a cookie or token to the requesting client.
 
@@ -21,6 +21,28 @@ See [Form with Username + Password](https://docs.stackhawk.com/hawkscan/authenti
 
 #### jwt token authentication
 
-[Oauth 2.0 connections](https://oauth.net/2/) will require apikeys and bearer tokens passed into their request headers.
+Demonstrated on the `/jwt-auth` page in JavaSpringVulny.
+
+[Oauth 2.0 connections](https://oauth.net/2/) will require APIKeys and bearer tokens passed into their request headers. This type of authentication scheme is common for modern web APIs.
 
 See [Cookie and Token](https://docs.stackhawk.com/hawkscan/authenticated-scanning/inject-cookies-and-tokens.html) for more information.
+
+#### token authentication
+
+Demonstrated on the `/token-auth` page in JavaSpringVulny.
+
+Some web applications require supplying an authorization token which can be used in conjunction with either a token or a cookie to maintain the session.
+
+See [External Token Authentication](https://docs.stackhawk.com/hawkscan/authenticated-scanning/inject-cookies-and-tokens.html#external-token-authentication--custom-token-authorization) for more information.
+
+#### basic authentication
+
+Demonstrated on the `/basic-auth` page in JavaSpringVulny.
+
+> :warning: The "Basic" authentication scheme sends credentials encoded but not encrypted. This authentication scheme is insecure unless the exchange is over a secure connection (HTTPS/TLS). It is not recommended for production web APIs.
+
+#### multi-auth form authentication
+
+Demonstrated on the `/login-form-multi` page in JavaSpringVulny.
+
+This is the same as the form authentication with some extra steps, including a toggle to remember the user's session.
