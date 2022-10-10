@@ -59,7 +59,6 @@ const playwrightProjects: PlaywrightProject[] = testProjects.flatMap(
  * the HTTP_PROXY environment variable is present when HawkScan runs.
  */
 const proxy = httpProxy() ? { server: httpProxy() } : undefined;
-console.log(proxy)
 
 const config: PlaywrightTestConfig<PlaywrightProject> = {
   forbidOnly: true,

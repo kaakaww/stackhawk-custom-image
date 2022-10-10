@@ -4,14 +4,13 @@ ARG NODE_VERSION="16.x"
 
 WORKDIR /app
 
-USER root
 COPY . /app
 
-COPY --from=mcr.microsoft.com/playwright:focal . /app
+COPY --chown=zap:zap --from=cypress/browsers:node16.17.1-chrome105-ff104-edge . /app
 
 RUN apt-get update && \
     apt-get -y install curl libnss3 libatk-bridge2.0-0 libdrm-dev libxkbcommon-dev libgbm-dev libasound-dev libatspi2.0-0 libxshmfence-dev && \
     curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash && \
     apt-get install -y nodejs
 
-USER zap
+USER root

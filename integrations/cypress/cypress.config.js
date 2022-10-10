@@ -1,6 +1,10 @@
 const { defineConfig } = require("cypress");
-import * as dotenv from 'dotenv'
+const dotenv = require('dotenv')
 const parsedConfig = dotenv.config().parsed
+
+if (!parsedConfig || !parsedConfig["APP_TEST_HOST"]) {
+  console.warn("Cannot read .env config or identify scanned host. Cypress wont work.")
+}
 
 module.exports = defineConfig({
   env: {
@@ -12,6 +16,6 @@ module.exports = defineConfig({
   e2e: {
     port: 8999,
     experimentalStudio: true,
-    baseUrl: "https://localhost:9000",
+    baseUrl: parsedConfig["APP_TEST_HOST"],
   },
 });
