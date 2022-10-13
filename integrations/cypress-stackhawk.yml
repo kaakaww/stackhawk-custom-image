@@ -30,5 +30,6 @@ hawk:
       command: npx cypress run --config-file cypress/cypress.config.js
       logOutputToForeground: true
       environment:
-        NO_PROXY: "<-loopback>" # This is required for Cypress scan discovery! 
+        NO_PROXY: "<-loopback>" # This is required for Cypress scan discovery!
+        NO_COLOR: 1
 
