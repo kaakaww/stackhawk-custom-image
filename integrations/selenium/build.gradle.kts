@@ -10,6 +10,12 @@ repositories {
 }
 
 dependencies {
+
+    implementation("org.junit.jupiter:junit-jupiter:5.9.0")
     testImplementation("org.seleniumhq.selenium:selenium-java:4.5.0")
-    testImplementation("io.github.bonigarcia.selenium:webdrivermanager:5.3.0")
+    testImplementation("io.github.bonigarcia:webdrivermanager:5.3.0")
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
