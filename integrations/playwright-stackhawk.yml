@@ -27,6 +27,6 @@ hawk:
     maxDurationMinutes: 5
     base: false
     custom:
-      command: ./node_modules/.bin/playwright test -c playwright/out --config=playwright/playwright.config.ts
+      command: ./node_modules/.bin/playwright test  -c playwright/out --config=playwright/playwright.config.ts
       logOutputToForeground: true
 
