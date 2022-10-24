@@ -27,8 +27,7 @@ hawk:
     maxDurationMinutes: 5
     base: false
     custom:
-      command: ./gradlew build
+      command: ./selenium/gradlew :test --tests "com.stackhawk.selenium.TestBrowser"
       logOutputToForeground: true
-      environment:
-        NO_PROXY: "<-loopback>" # This is required for Cypress scan discovery! 
+
 
