@@ -72,6 +72,7 @@ class TestBrowser {
     @Test
     fun `can login with tokenAuth`() {
         tokenAuth(browser)
+        Thread.sleep(2000)
         attemptSearch(browser, value = "test")
         val resultsPane = browser.findElement(By.id("results")).getAttribute("class")
         Assertions.assertEquals(resultsPane, "alert-success")
@@ -100,6 +101,13 @@ class TestBrowser {
         jwtAuth(browser)
         Thread.sleep(1000)
         attemptSearch(browser, "test")
+    }
+
+    @Test
+    fun `can visit hidden page`() {
+        browser.navigate().to("$URL/hidden/selenium")
+        val element = browser.title
+        Assertions.assertTrue(element.contains("selenium tests"))
     }
 
     private fun attemptSearch(browser: WebDriver, value: String) {
