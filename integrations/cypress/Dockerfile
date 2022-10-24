@@ -1,15 +1,14 @@
+FROM stackhawk/hawkscan
 
-FROM cypress/included:10.9.0
 ARG NODE_VERSION="16.x"
-
-
-COPY --chown=zap:zap --from=stackhawk/hawkscan /zap /zap
+ARG CYPRESS_VERSION="10.10.0"
 
 USER root
 
 RUN apt-get update && \
-    apt-get install -y openjdk-11-jdk simpleproxy
+    apt-get -y install curl libnss3 libatk-bridge2.0-0 libdrm-dev libxkbcommon-dev libgbm-dev libasound-dev libatspi2.0-0 libxshmfence-dev && \
+    curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash && \
+    apt-get -y install nodejs && \
+    npm install --global cypress@${CYPRESS_VERSION}
 
-ENV PATH $JAVA_HOME/bin:/zap:$PATH
-
-ENTRYPOINT ["shawk"]
+WORKDIR /hawk

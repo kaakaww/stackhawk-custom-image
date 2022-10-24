@@ -12,26 +12,12 @@ type PlaywrightProject = PlaywrightTestProject & { metadata: TestAccount };
 
 const testProjects: PlaywrightTestProject[] = [
   {
-    name: "Desktop Chromium",
+    name: "Desktop-Chromium",
     use: {
       browserName: "chromium",
       viewport: { width: 1280, height: 720 },
     },
-  },
-  {
-    name: "Desktop Safari",
-    use: {
-      browserName: "webkit",
-      viewport: { width: 1280, height: 720 },
-    },
-  },
-  {
-    name: "Desktop Firefox",
-    use: {
-      browserName: "firefox",
-      viewport: { width: 1280, height: 720 },
-    },
-  },
+  }
   // {
   //   name: 'Mobile Chrome',
   //   use: devices['Pixel 5'],
