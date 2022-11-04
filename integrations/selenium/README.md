@@ -27,23 +27,24 @@ Follow the [Selenium Documentation for more information](https://www.selenium.de
 
 ### Scanning with HawkScan
 
-To use Selenium custom scan discovery, you will need to specify the http proxy server setting in your web driver as shown below.
+To use Selenium custom scan discovery, you will need to specify the http proxy server setting.
 
-PS: This can also be achieved by using DesiredCapabilities class in java.
+> `HTTP_PROXY` is a system environment set by the user.
+
 
 ```kt
 fun getBrowser(browserName: String?): WebDriver {
     val driver: WebDriver = if (browserName != null && browserName == "chrome") {
         val options: ChromeOptions = ChromeOptions()
         val proxy: Proxy = Proxy()
-        proxy.httpProxy = "http://localhost:9000"
+        proxy.httpProxy = System.getenv("HTTP_PROXY") // This is required for Selenium scan discovery! 
         options.setProxy(proxy)
         ChromeDriverManager.getInstance().setup()
         ChromeDriver(options)
     } else {
         val options: FirefoxOptions = FirefoxOptions()
         val proxy: Proxy = Proxy()
-        proxy.httpProxy = "http://localhost:9000"
+        proxy.httpProxy = System.getenv("HTTP_PROXY") // This is required for Selenium scan discovery! 
         options.setHeadless(true)
         options.setProxy(proxy)
         FirefoxDriverManager.getInstance().setup()
