@@ -30,7 +30,11 @@ Cypress allows for the creation of [custom commands](https://github.com/stackhaw
 
 ### Scanning with HawkScan
 
-See the docs for using [Cypress tests with Custom Scan Discovery](https://docs.stackhawk.com/hawkscan/scan-discovery/custom.html). You can use the sample [cypress-stackhawk.yml](./cypress/cypress-stackhawk.yml) file for an example of scanning a web application with it.
+To use Cypress custom scan discovery, you will need to specify the `NO_PROXY: "<-loopback>"` environment variable to scan localhost traffic. Otherwise Cypress will pick up and use the HTTP_PROXY variable auto-configured by HawkScan.
+
+See the docs for using [Cypress tests with Custom Scan Discovery](https://docs.stackhawk.com/hawkscan/scan-discovery/custom.html).
+
+You can use the sample [cypress-stackhawk.yml](./cypress/cypress-stackhawk.yml) file for an example of scanning a web application with it.
 
 ### Cypress Best Practices
 
