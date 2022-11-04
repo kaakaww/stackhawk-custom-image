@@ -6,6 +6,7 @@ See how these E2E testing tools can be combined with HawkScan with [Custom Scan 
 
 * [**Cypress**](https://github.com/stackhawk/stackhawk-custom-image/tree/main/integrations/cypress)
 * [**Playwright**](https://github.com/stackhawk/stackhawk-custom-image/tree/main/integrations/playwright)
+* [**Selenium**](https://github.com/stackhawk/stackhawk-custom-image/tree/main/integrations/selenium)
 
 ## Building Custom Docker Images
 
