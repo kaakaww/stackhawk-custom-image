@@ -8,8 +8,10 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.openqa.selenium.By
+import org.openqa.selenium.Proxy
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.firefox.FirefoxDriver
 import java.util.*
 
@@ -30,8 +32,12 @@ class TestBrowser {
     companion object {
         fun getBrowser(browserName: String?): WebDriver {
             val driver: WebDriver = if (browserName != null && browserName == "chrome") {
+                val options: ChromeOptions = ChromeOptions()
+                val proxy: Proxy = Proxy()
+                proxy.httpProxy = HTTP_PROXY
+                options.setProxy(proxy)
                 ChromeDriverManager.getInstance().setup()
-                ChromeDriver()
+                ChromeDriver(options)
             } else {
                 FirefoxDriverManager.getInstance().setup()
                 FirefoxDriver()
@@ -43,6 +49,7 @@ class TestBrowser {
         private val TOKEN_VALUE = PropertiesReader.getProperty("TOKEN_VALUE")
         private val LOGIN_PASSWORD = PropertiesReader.getProperty("LOGIN_PASSWORD")
         private val URL = PropertiesReader.getProperty("APP_TEST_HOST")
+        private val HTTP_PROXY = PropertiesReader.getProperty("HTTP_PROXY")
     }
 
     @BeforeAll
