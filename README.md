@@ -11,9 +11,14 @@ StackHawk provides dynamic application vulnerability scanning from development t
 
 - 🧰 Vulnerability Management: Document for compliance. Prioritize and manage fixes with integrations to existing ticketing tools. Point in time assessments are a thing of the past - there is a better way.
 
+# StackHawk Custom Image
 
-# stackhawk-custom-image
-Repo to help users customize their on StackHawk docker images
+This is a repository with examples of HawkScan used with other common software development tools, aka _devtools_, to help users customize their on StackHawk Docker images. This repo provides instructions to use HawkScan with:
+
+* [Postman](https://github.com/kaakaww/stackhawk-custom-image/tree/main/postman-newman)
+* [Cypress](https://github.com/kaakaww/stackhawk-custom-image/tree/main/integrations/cypress)
+* [Playwright](https://github.com/kaakaww/stackhawk-custom-image/tree/main/integrations/playwright)
+* [Selenium](https://github.com/kaakaww/stackhawk-custom-image/tree/main/integrations/selenium)
 
 ## Introduction
 

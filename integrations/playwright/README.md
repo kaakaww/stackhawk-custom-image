@@ -48,6 +48,8 @@ const config: PlaywrightTestConfig<PlaywrightProject> = {
 };
 ```
 
+See the docs for using [Playwright tests with Custom Scan Discovery](https://docs.stackhawk.com/hawkscan/scan-discovery/custom.html).
+
 You can use the sample [playwright-stackhawk.yml](https://github.com/stackhawk/stackhawk-custom-image/blob/main/integrations/playwright/playwright-stackhawk.yml) file for an example of scanning a web application with it.
 
 ### Playwright Best Practices
