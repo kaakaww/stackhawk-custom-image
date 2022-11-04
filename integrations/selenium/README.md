@@ -15,7 +15,7 @@ Follow the [Selenium Documentation for more information](https://www.selenium.de
 
 > Selenium can be run as part of your gradle task as shown below on the stackhawk.yaml config file.
 
-```
+```yml
   hawk:
   spider:
     maxDurationMinutes: 5
@@ -31,7 +31,7 @@ To use Selenium custom scan discovery, you will need to specify the http proxy s
 
 PS: This can also be achieved by using DesiredCapabilities class in java.
 
-```
+```kt
 fun getBrowser(browserName: String?): WebDriver {
     val driver: WebDriver = if (browserName != null && browserName == "chrome") {
         val options: ChromeOptions = ChromeOptions()
@@ -56,3 +56,7 @@ fun getBrowser(browserName: String?): WebDriver {
 You can use the sample [selenium-stackhawk.yml](https://github.com/stackhawk/stackhawk-custom-image/blob/main/integrations/selenium/selenium-stackhawk.yml) file for an example of scanning a web application with it.
 
 ### Selenium Best Practices
+
+No one approach works for all situations.
+
+Please refer to the selenium [Test Pratices](https://www.selenium.dev/documentation/test_practices/) for more information
