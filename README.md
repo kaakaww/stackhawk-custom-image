@@ -20,6 +20,34 @@ This is a repository with examples of HawkScan used with other common software d
 * [Playwright](https://github.com/kaakaww/stackhawk-custom-image/tree/main/integrations/playwright)
 * [Selenium](https://github.com/kaakaww/stackhawk-custom-image/tree/main/integrations/selenium)
 
+This repo provides steps to create a custom docker image starting from stackhawk base image, and how to run it from a container. Typically a team may instead want to start from a different base image and add hawkscan as a third-party utility. See below for instructions.
+
 ## Introduction
 
-In order to run your application in a docker container, a customized docker image is created. This customized docker image includes instructions that install specific packages and copy the code into the docker container. This repo provides steps to create a custom docker image from stackhawk base image and how to run it as a container.
+In order to run your web application in a docker container, You will create a customized docker image.
+
+This docker image includes instructions that install specific packages and copy the built application code into the docker container. Your docker container should include all software needed to run and test your application. This incudes:
+
+* runtimes: such as nodejs or java
+* build libraries: such as gcc or gradle
+* runtime dependencies: such as drivers or browsers
+* your built application source code.
+
+### Adding HawkScan to your own docker image
+
+To include hawkscan in your own base image, include in your `Dockerfile`:
+
+```
+# maintain the version of hawkscan you include as a seperate build argument
+ARG HAWK_VERSION="2.9.0"
+
+# create a /hawk directory, download and unzip hawkscan into there
+RUN mkdir /hawk && curl -v https://download.stackhawk.com/hawk/cli/hawk-${HAWK_VERSION}.zip -o hawk-2.9.0.zip && unzip hawk-${HAWK_VERSION}.zip /hawk
+
+# add the /hawk directory to the $PATH
+ENV PATH $JAVA_HOME/bin:/hawk:$PATH
+```
+
+and then start hawkscan by calling `shawk`, or explicitly calling `hawk scan` passing any arguments.
+
+Test your web applications with HawkScan to ship quality software with confidence.
