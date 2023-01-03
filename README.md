@@ -43,7 +43,9 @@ While this repo provides steps and examples to create a custom docker image _sta
 ARG HAWKSCAN_VERSION="2.9.0"
 
 # create a /hawk directory and download/unzip the version of HawkScan there
-RUN mkdir /hawk curl -v https://download.stackhawk.com/hawk/cli/hawk-${HAWKSCAN_VERSION}.zip -o hawk-${HAWKSCAN_VERSION}.zip /hawk
+RUN mkdir /hawk \
+    && curl -v https://download.stackhawk.com/hawk/cli/hawk-${HAWKSCAN_VERSION}.zip -o hawk-${HAWKSCAN_VERSION}.zip \
+    && unzip hawk-${HAWKSCAN_VERSION}.zip /hawk
 
 # ... include your application content, runtime source, and stackhawk.yaml file
 
