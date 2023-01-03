@@ -9,9 +9,9 @@ It provides extensions to emulate user interaction with browsers, a distribution
 
 Follow the [Selenium Documentation for more information](https://www.selenium.dev/documentation/).
 
-### Testing
+### Testing with [javaspringvulny](https://github.com/kaakaww/javaspringvulny)
 
-> Ensure javaspringvulny is running on `https://localhost:9000`
+> Ensure javaspringvulny web application is running on `https://localhost:9000`
 
 > Selenium can be run as part of your gradle task as shown below on the stackhawk.yaml config file.
 

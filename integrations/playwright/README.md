@@ -8,9 +8,9 @@ At StackHawk, _we like Playwright_, and encourage it's use for teams with comple
 
 Follow the [Playwright guide for getting started](https://playwright.dev/docs/intro).
 
-### Testing
+### Testing with [javaspringvulny](https://github.com/kaakaww/javaspringvulny)
 
-> Ensure javaspringvulny is running on `https://localhost:9000`
+> Ensure javaspringvulny web application is running on `https://localhost:9000`
 
 > Playwright requires first running `npx playwright install` to install browsers.
 

@@ -8,9 +8,9 @@ At StackHawk, we like Cypress, and we encourage its use for teams looking to est
 
 Follow the [Cypress guide for getting started](https://docs.cypress.io/guides/getting-started/installing-cypress).
 
-### Testing
+### Testing with [javaspringvulny](https://github.com/kaakaww/javaspringvulny)
 
-> Ensure javaspringvulny is running on `https://localhost:9000`
+> Ensure javaspringvulny web application is running on `https://localhost:9000`
 
 UI: `npx cypress open --config-file cypress/cypress.config.js`
 
