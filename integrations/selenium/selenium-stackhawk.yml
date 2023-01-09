@@ -27,7 +27,5 @@ hawk:
     maxDurationMinutes: 5
     base: false
     custom:
-      command: ./gradlew :test --tests "com.stackhawk.selenium.TestBrowser"
+      command: ./gradlew :test --info --stacktrace
       logOutputToForeground: true
-
-
