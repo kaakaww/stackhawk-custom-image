@@ -29,5 +29,3 @@ hawk:
     custom:
       command: ./gradlew :test --tests "com.stackhawk.selenium.TestBrowser"
       logOutputToForeground: true
-
-
