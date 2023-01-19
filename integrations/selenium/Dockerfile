@@ -7,7 +7,7 @@ ARG HAWKSCAN_VERSION="2.10.0"
 USER root
 
 RUN apt-get update && \
-    apt-get install -y simpleproxy curl unzip xvfb && \
+    apt-get install -y simpleproxy curl unzip xvfb firefox && \
     curl -L https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz | tar xz -C /usr/local/bin && \
     curl -L https://download.stackhawk.com/hawk/cli/hawk-${HAWKSCAN_VERSION}.zip -O && \
     unzip hawk-${HAWKSCAN_VERSION}.zip && \
