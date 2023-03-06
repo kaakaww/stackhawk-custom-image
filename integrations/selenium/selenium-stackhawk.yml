@@ -27,5 +27,5 @@ hawk:
     maxDurationMinutes: 5
     base: false
     custom:
-      command: ./gradlew :test --info --stacktrace
+      command: ./gradlew :test --info --stacktrace --rerun-tasks
       logOutputToForeground: true
