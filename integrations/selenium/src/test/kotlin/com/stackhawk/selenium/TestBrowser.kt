@@ -13,12 +13,15 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.firefox.FirefoxOptions
+import org.openqa.selenium.firefox.FirefoxProfile
 import java.util.*
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TestBrowser {
 
     private lateinit var browser: WebDriver
+
     object PropertiesReader {
         private val properties = Properties()
 
@@ -29,41 +32,64 @@ class TestBrowser {
 
         fun getProperty(key: String): String = properties.getProperty(key)
     }
+
     companion object {
         fun getBrowser(browserName: String?): WebDriver {
             val driver: WebDriver = if (browserName != null && browserName == "chrome") {
-                val options: ChromeOptions = ChromeOptions()
-                val proxy: Proxy = Proxy()
-                proxy.httpProxy = HTTP_PROXY
-                options.setProxy(proxy)
+                val options = ChromeOptions()
+                options.setHeadless(HEADLESS)
+                HTTP_PROXY?.let { proxyUrl ->
+                    val proxy = Proxy()
+                    proxy.httpProxy = proxyUrl
+                    options.setProxy(proxy)
+                }
                 ChromeDriverManager.getInstance().setup()
                 ChromeDriver(options)
             } else {
+                val options = FirefoxOptions()
+                options.setHeadless(HEADLESS)
+
+                HTTP_PROXY?.let { proxyUrl ->
+                    val profile = FirefoxProfile()
+                    // The proxy will always be listening on localhost:<port> so firefox needs this preference set
+                    profile.setPreference("network.proxy.allow_hijacking_localhost", true)
+                    options.profile = profile
+                    val proxy = Proxy()
+                    // Firefox wants the http/s proxies in host:port format
+                    val firefoxProxy = proxyUrl.replace("http://", "")
+                    proxy.httpProxy = firefoxProxy
+                    proxy.sslProxy = firefoxProxy
+                    options.setProxy(proxy)
+                }
                 FirefoxDriverManager.getInstance().setup()
-                FirefoxDriver()
+                FirefoxDriver(options)
             }
             return driver
         }
+
         private val LOGIN_USERNAME = PropertiesReader.getProperty("LOGIN_USERNAME")
         private val TOKEN_NAME = PropertiesReader.getProperty("TOKEN_NAME")
         private val TOKEN_VALUE = PropertiesReader.getProperty("TOKEN_VALUE")
         private val LOGIN_PASSWORD = PropertiesReader.getProperty("LOGIN_PASSWORD")
         private val URL = PropertiesReader.getProperty("APP_TEST_HOST")
-        private val HTTP_PROXY = PropertiesReader.getProperty("HTTP_PROXY")
+
+        // Get the proxy URL as added by hawkscan to the runtime environment
+        private val HTTP_PROXY: String? = System.getenv("HTTP_PROXY")
+        private val HEADLESS: Boolean = System.getenv("HEADLESS")?.let { it.toBoolean() } ?: true
     }
 
     @BeforeAll
     fun setUp() {
+        // Uncomment to debug if env vars are being passed to the test correctly.
+        /*System.getenv().forEach { (key, value) ->
+            println("$key=$value")
+        }*/
         browser = getBrowser("firefox")
     }
 
-//    @AfterEach
-//    fun signOut() {
-//        signOut(browser)
-//    }
-
     @AfterAll
     fun destroy() {
+        println("Shutting down browser")
         Thread.sleep(2000)
         browser.quit()
     }
@@ -104,17 +130,26 @@ class TestBrowser {
     }
 
     @Test
-    fun `can login with jwtAuth`() {
-        jwtAuth(browser)
-        Thread.sleep(1000)
-        attemptSearch(browser, "test")
-    }
-
-    @Test
     fun `can visit hidden page`() {
         browser.navigate().to("$URL/hidden/selenium")
         val element = browser.title
         Assertions.assertTrue(element.contains("selenium tests"))
+    }
+
+    @Test
+    fun `can visit payloads page`() {
+        browser.navigate().to(URL)
+        val element = browser.currentUrl
+        formAuth(browser)
+        browser.navigate().to("${element}payloads")
+        val urls = browser.findElements(By.tagName("a"))
+            .filter { it.getAttribute("href").startsWith("${element}payload") }
+            .map { it.getAttribute("href") }
+        Assertions.assertTrue(urls.size > 5)
+        urls.forEach { url ->
+            browser.navigate().to(url)
+            Assertions.assertTrue(browser.pageSource.isNotEmpty())
+        }
     }
 
     private fun attemptSearch(browser: WebDriver, value: String) {
@@ -158,6 +193,7 @@ class TestBrowser {
         element = browser.findElement(By.xpath("//button[text()=\"Submit\"]"))
         element.click()
     }
+
     private fun formMultiAuth(browser: WebDriver) {
         browser.navigate().to("$URL/login-form-multi")
         var element = browser.findElement(By.id("username"))

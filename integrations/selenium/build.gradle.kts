@@ -2,6 +2,7 @@
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.6.21"
+    id("com.adarshr.test-logger") version "3.0.0"
 }
 
 repositories {
@@ -18,4 +19,12 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+testlogger {
+    theme = com.adarshr.gradle.testlogger.theme.ThemeType.PLAIN
+    showExceptions = true
+    showStackTraces = true
+    showFullStackTraces = true
+    showCauses = true
 }
