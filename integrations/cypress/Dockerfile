@@ -1,6 +1,6 @@
 FROM stackhawk/hawkscan
 
-ARG NODE_VERSION="21.x"
+ARG NODE_VERSION="20.x"
 ARG CYPRESS_VERSION="13.5.1"
 
 USER root

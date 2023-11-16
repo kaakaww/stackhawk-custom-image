@@ -1,6 +1,6 @@
 FROM stackhawk/hawkscan
 
-ARG NODE_VERSION="21.x"
+ARG NODE_VERSION="20.x"
 
 WORKDIR /app
 
